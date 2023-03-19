@@ -15,10 +15,6 @@
 #include <float.h>
 #include <algorithm>
 
-#undef PI
-#undef DEG_TO_RAD
-#undef RAD_TO_DEG
-
 namespace Leap {
 
 /**
