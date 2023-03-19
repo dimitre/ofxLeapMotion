@@ -3,6 +3,9 @@
 
 #pragma once
 #include "ofMesh.h"
+#include <glm/gtx/perpendicular.hpp>
+
+using std::vector;
 
 class ofxStrip{
 
@@ -61,13 +64,14 @@ class ofxStrip{
 				}
 
 				//find this point and the next point
-				ofVec3f & thisPoint = pts[i-1];
-				ofVec3f & nextPoint = pts[i];
+				glm::vec3 & thisPoint = pts[i-1];
+				glm::vec3 & nextPoint = pts[i];
 
 				glm::vec3 delta		= nextPoint - thisPoint;
-				glm::vec3 deltaNorm	= delta.normalized();
+				glm::vec3 deltaNorm	= glm::normalize(delta); //.normalized();
 
-				ofVec3f toTheLeft	= deltaNorm.getPerpendicular(upVec);
+//				ofVec3f toTheLeft	= deltaNorm.getPerpendicular(upVec);
+				auto toTheLeft	= glm::gtx::perpendicular::perp(upVec); //deltaNorm.getPerpendicular(upVec);
 
 				glm::vec3 L = thisPoint + toTheLeft * curWidth;
 				glm::vec3 R = thisPoint - toTheLeft * curWidth;
@@ -76,7 +80,8 @@ class ofxStrip{
 				mesh.addVertex(R);
 
 				if( bNormals ){
-					glm::vec3 normal = deltaNorm.getPerpendicular(-toTheLeft);
+					glm::vec3 normal = glm::gtx::perp(-toTheLeft);
+					//deltaNorm.getPerpendicular(-toTheLeft);
 					mesh.addNormal(normal);
 					mesh.addNormal(normal);
 				}

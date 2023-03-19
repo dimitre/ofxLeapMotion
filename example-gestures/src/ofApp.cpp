@@ -10,7 +10,6 @@ cp -f ../../../addons/ofxLeapMotion/libs/lib/osx/libLeap.dylib "$TARGET_BUILD_DI
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-
     ofSetFrameRate(60);
     ofSetVerticalSync(true);
 	ofSetLogLevel(OF_LOG_VERBOSE);
@@ -19,10 +18,8 @@ void ofApp::setup(){
 	leap.setupGestures();   // we enable our gesture detection here
 }
 
-
 //--------------------------------------------------------------
-void ofApp::update()
-{
+void ofApp::update() {
 	leap.updateGestures();  // check for gesture updates
 	leap.markFrameAsOld();	//IMPORTANT! - tell ofxLeapMotion that the frame is no longer new. 
 }
