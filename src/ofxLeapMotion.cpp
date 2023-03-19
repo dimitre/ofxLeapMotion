@@ -73,7 +73,7 @@ ofxLeapMotion::ofxLeapMotion()
 		,swipeDurationMicros(0) {
 	reset();
 	resetMapping();
-	ourController = new Leap::Controller(); 
+	ourController = new Leap::Controller(mListener);
 }
 
 //--------------------------------------------------------------
@@ -87,7 +87,7 @@ ofxLeapMotion::~ofxLeapMotion(){
 //--------------------------------------------------------------
 void ofxLeapMotion::open(){
 	reset();
-	ourController->addListener(*this);
+//	ourController->addListener(*this);
 }
 
 
@@ -101,7 +101,7 @@ void ofxLeapMotion::reset(){
 //--------------------------------------------------------------
 void ofxLeapMotion::close(){
 	if(ourController){
-		ourController->removeListener(*this);
+		ourController->removeListener(mListener);
 	}
 	
 	/// JRW - let's delete our Leap controller

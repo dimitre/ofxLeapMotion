@@ -36,6 +36,8 @@ class ofxLeapMotion : public Listener{
 	
 	public:
     
+	Listener			mListener;
+
 		// TODO: adding leap gesture support - JRW
 		int iGestures;
 		
